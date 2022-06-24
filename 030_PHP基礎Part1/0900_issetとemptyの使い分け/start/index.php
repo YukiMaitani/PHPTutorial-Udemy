@@ -15,5 +15,11 @@
  FALSE
 */
 
-$a = 0;
+$a = "0";
 $b = 1;
+
+if(!isset($a) || $a == false) {
+  echo 'true';
+} else {
+  echo 'false';
+}
