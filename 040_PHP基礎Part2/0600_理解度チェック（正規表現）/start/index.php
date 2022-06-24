@@ -29,6 +29,14 @@
  * 124-56789 -> NG
  */
 
+$posnum = '001-001';
+if(preg_match("/[0-2-]{8}/",$posnum,$result)) {
+  echo 'OK';
+  print_r($result);
+} else {
+  echo 'NG';
+}
+
 
 /**
  * Email
@@ -40,8 +48,37 @@
  * example/0.00@ex.co.jp -> NG
  */
 
+$email = 'example-0.00@gmail.com';
+if(preg_match("/^[a-z0-9.\-]+@/",$email,$result)) {
+  echo 'OK';
+  print_r($result);
+} else {
+  echo 'NG';
+}
+
 
 /**
  * HTML
  * 見出しタグ(h1~h6)の中身のみ取得してみよう。
+ *
  */
+
+
+$html = '<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <h1>見出し１</h1>    
+    <h2>見出し２</h2>    
+    <h3>見出し３</h3>    
+    <header>ヘッダー</header>
+</body>
+</html>';
+if(preg_match_all("/<h[1-6]>(.+)<\/h[1-6]>/",$html,$result)) {
+  echo 'OK';
+  print_r($result[count($result) - 1]);
+} else {
+  echo 'NG';
+}
