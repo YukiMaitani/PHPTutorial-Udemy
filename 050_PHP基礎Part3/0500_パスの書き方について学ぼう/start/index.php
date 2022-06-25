@@ -8,3 +8,6 @@
  * - \と/は使い分けよう
  * - "と'は使い分けよう
  */
+echo __DIR__;
+echo __FILE__;
+require __DIR__ . '/sub/file2.php';

@@ -8,3 +8,6 @@
 $arry = [
     'num' => 0
 ];
+
+require('file1.php');
+fn1();
