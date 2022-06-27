@@ -1,4 +1,7 @@
 <?php
+
+use MyFileWriter as GlobalMyFileWriter;
+
 /**
  * 理解度チェック（クラス継承）
  * 
@@ -17,8 +20,8 @@
  */
 class MyFileWriter
 {
-    private $filename;
-    private $content = '';
+    public $filename;
+    public $content = '';
     public const APPEND = FILE_APPEND;
 
     function __construct($filename)
@@ -57,7 +60,28 @@ class MyFileWriter
 $time_str = date('Y/m/d H:i:s');
 sprintf('%s %s', $time_str, '文字列');
 
-/* クラスの呼び出し方は以下のようにするものとします。
+class LogWriter extends MyFileWriter {
+    function format($content)
+    {
+        $time_str = date('Y/m/d H:i:s');
+        return sprintf('%s %s', $time_str, $content);
+    }
+
+    function append($content) {
+        parent::append($this->format($content));
+        return $this;
+    }
+
+    function newline()
+    {
+        $this->content .= PHP_EOL;
+        return $this;
+    }
+
+
+}
+
+// クラスの呼び出し方は以下のようにするものとします。
 
 $info = new LogWriter('info.log');
 $error = new LogWriter('error.log');
@@ -70,4 +94,3 @@ $error->append('これはエラーログです。')
     ->newline()
     ->commit(LogWriter::APPEND);
 
-*/
