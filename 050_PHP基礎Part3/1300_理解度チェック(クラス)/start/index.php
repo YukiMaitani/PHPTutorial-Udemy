@@ -22,6 +22,30 @@ $content = 'Good night, Bob.'; // append
 file_put_contents('sample.txt', $content, FILE_APPEND);
 $content = '';
 
+class MyFileWriter {
+    public $file;
+    public $content = '';
+    static public $APPEND;
+
+    function __construct($file)
+    {
+        $this->name = $file;
+    }
+
+    function newline() {
+        $this->content = $this->content . PHP_EOL;
+    }
+
+    function append($str) {
+        $this->content = $this->content . $str;
+    }
+
+    function commit() {
+        file_put_contents($this->file, $this->content);
+        $this->content = '';
+    }
+}
+
 /* クラスの呼び出し方は以下のようにするものとします。
 
 $file = new MyFileWriter('sample.txt');
