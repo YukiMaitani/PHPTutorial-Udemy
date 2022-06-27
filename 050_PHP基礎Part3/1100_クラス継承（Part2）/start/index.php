@@ -1,10 +1,14 @@
 <?php
+
+use animal\Japanese as AnimalJapanese;
+use Japanese as GlobalJapanese;
+
 /**
  * クラス継承
  */
-class Person
+abstract class Person
 {
-    private $name;
+    public $name;
     public $age;
     public const WHERE = 'Earth';
 
@@ -14,15 +18,25 @@ class Person
         $this->age = $age;
     }
 
-    function hello() {
-        echo 'hello, ' . $this->name;
-        return $this;
-    }
+    abstract function hello();
 
     static function bye() {
         echo 'bye';
     }
 }
 
-$bob = new Person('Bob', 18);
+class Japanese extends Person {
+    public static $WHERE = '日本';
+
+    function hello() {
+        echo 'こんにちは, ' . $this->name;
+        return $this;
+    }
+
+    function jusho() {
+        echo '住所は'. static::$WHERE.'です。';
+    }
+}
+
+$bob = new Japanese('Bob', 18);
 $bob->hello();

@@ -16,4 +16,6 @@ class Person
 }
 
 $bob = new Person('Bob', 18);
+$tim = new Person('Tim', 32);
 $bob->hello();
+$tim->hello();
